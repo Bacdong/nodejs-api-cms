@@ -11,10 +11,10 @@ module.exports = {
         current_page: 1,
         next_page: 2,
         prev_page: null,
-        results: data.map(data => data.toObject())
+        results: data.map(data => (data ? data.toObject() : null))
       }
     } else {
-      data = data.toObject()
+      data = data ? data.toObject() : null
     }
 
     return {

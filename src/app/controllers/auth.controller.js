@@ -1,3 +1,5 @@
+const User = require('../models/user.model')
+const { ApiResponse } = require('../core/utils/api-response.util')
 class AuthController {
   /**
    * [GET] /auth
@@ -5,8 +7,10 @@ class AuthController {
    * @param {*} res
    * @returns profile
    */
-  index(req, res) {
-    res.json('Auth Profile Controller')
+  index(req, res, next) {
+    User.findOne({ slug: req.params.slug })
+      .then(data => res.json(ApiResponse(data, true, 200)))
+      .catch(next)
   }
 
   /**

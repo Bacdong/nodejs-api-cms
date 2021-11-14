@@ -5,8 +5,10 @@ class OrderController {
    * @param {*} res
    * @returns orders
    */
-  index(req, res) {
-    res.json('Order Controller')
+  index(req, res, next) {
+    User.find({})
+      .then(data => res.json(ApiResponse(data, true, 200)))
+      .catch(next)
   }
 }
 
