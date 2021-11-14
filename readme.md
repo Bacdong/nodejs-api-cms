@@ -14,7 +14,7 @@ npm install
 npm install --also=dev
 ```
 
-## Start App
+## App Start
 ```
 npm start
 ```
