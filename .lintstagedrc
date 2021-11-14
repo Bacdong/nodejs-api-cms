@@ -1,0 +1,3 @@
+{
+  "src/**/*.{js, json}": "prettier --semi false --tab-width 2 --bracket-spacing --print-width 80 --trailing-comma all --write"
+}

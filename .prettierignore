@@ -1,0 +1,6 @@
+./node_modules
+/dist
+/coverage
+
+# MacOS
+.DS_Store
