@@ -1,18 +1,18 @@
 module.exports = {
   ApiResponse: (data, success = true, status = 200) => {
-    var data
+    var results
     
     if (Array.isArray(data)) {
-      data = {
-        results: data.map(data => (data ? data.toObject() : null))
-      }
+      results = data.map(data => (data ? data.toObject() : null))
+      results = results.length > 0 ? results : null
     } else {
-      data = data ? data.toObject() : null
+      results = data ? data.toObject() : null
     }
+
     return {
       success: success ? success : false,
       status_code: status ? status : 400,
-      results: data.results.length > 0 ? data : null,
+      results: results,
     }
   }
 }

@@ -1,5 +1,6 @@
 const Product = require('../models/product.model')
 const { ApiResponse } = require('../core/utils/api-response.util')
+const { getPaginationPages } = require('../core/utils/pagination.util')
 
 class ProductController {
 
@@ -10,8 +11,15 @@ class ProductController {
    * @returns products
    */
   index(req, res, next) {
+    const pagination = getPaginationPages(1, 1, 12, 5)
+
     Product.find({})
-      .then(data => res.json(ApiResponse(data, true, 200)))
+      .then(data => res.json({
+        data: {
+          ...pagination,
+          ...ApiResponse(data)
+        }
+      }))
       .catch(next)
   }
 
