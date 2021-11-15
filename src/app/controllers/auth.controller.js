@@ -9,7 +9,11 @@ class AuthController {
    */
   index(req, res, next) {
     User.findOne({ slug: req.params.slug })
-      .then(data => res.json(ApiResponse(data)))
+      .then(data => res.status(200).json({
+        success: true,
+        status_code: 200,
+        data: ApiResponse(data),
+      }))
       .catch(next)
   }
 

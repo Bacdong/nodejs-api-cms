@@ -14,11 +14,13 @@ class CategoryController {
     const pagination = getPaginationPages(120, 6, 12, 5)
 
     Category.find({})
-      .then(data => res.json({
+      .then(data => res.status(200).json({
+        success: true,
+        status_code: 200,
         data: {
           ...pagination,
-          ...ApiResponse(data)
-        }
+          ...ApiResponse(data),
+        },
       }))
       .catch(next)
   }
@@ -31,7 +33,11 @@ class CategoryController {
    */
   categoryDetail(req, res, next) {
     Category.findOne({ slug: req.params.slug })
-      .then(data => res.json(ApiResponse(data)))
+      .then(data => res.status(200).json({
+        success: true,
+        status_code: 200,
+        data: ApiResponse(data),
+      }))
       .catch(next)
   }
 }

@@ -14,11 +14,13 @@ class ProductController {
     const pagination = getPaginationPages(1, 1, 12, 5)
 
     Product.find({})
-      .then(data => res.json({
+      .then(data => res.status(200).json({
+        success: true,
+        status_code: 200,
         data: {
           ...pagination,
-          ...ApiResponse(data)
-        }
+          ...ApiResponse(data),
+        },
       }))
       .catch(next)
   }
@@ -31,7 +33,11 @@ class ProductController {
    */
   productDetail(req, res, next) {
     Product.findOne({ slug: req.params.slug })
-      .then(data => res.json(ApiResponse(data)))
+      .then(data => res.status(200).json({ 
+        success: true,
+        status_code: 200,
+        data: ApiResponse(data),
+      }))
       .catch(next)
   }
 }
