@@ -7,7 +7,7 @@ class OrderController {
    */
   index(req, res, next) {
     User.find({})
-      .then(data => res.json(ApiResponse(data, true, 200)))
+      .then(data => res.json(ApiResponse(data)))
       .catch(next)
   }
 }
